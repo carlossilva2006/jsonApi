@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Login.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <title>Login</title>
+</head>
+<body>
+    <form action="" class="formulario" onsubmit="return false">
+    <div class="imagen">
+       <img src="https://img2.freepng.es/20180426/qxw/kisspng-user-computer-icons-sprite-clip-art-5ae283a2addb86.7938813015247942747121.jpg" alt="">
+    </div>
+    <div class="principal">
+            <div class="campo">
+                <i class="fas fa-user icon"></i>
+                <input type="text" class="inputUser" placeholder="usuario" id="user">
+            </div>
+            <div class="campo">
+                <i class="fas fa-lock icon" ></i>
+                <input type="password" class="inputPsw" placeholder="contraseña" id="psw">
+            </div>                         
+        </div>
+        <div class="campo">
+            <button class="btn" onclick="Ingresar()">Ingresar</button>
+        </div>       
+    </div>
+</form>
+    <script src="js/Login.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" 
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" 
+    crossorigin="anonymous"></script>
+</body>
+</html>
