@@ -1,4 +1,4 @@
-let jsonPedido = [];
+let jsonPedido=[]
 
 let User = document.getElementById("inUser");
 let Id = document.getElementById("inId");
@@ -6,46 +6,69 @@ let Titt = document.getElementById("inTi");
 let Comple =document.getElementById("selCom");
 let conten = document.getElementById("conten");
 
-function agregar() {
-    var jsonagrega = {
-        userId: User.value,
-        id: Id.value,
-        title: Titt.value,
-        completed: selCom.value  
+function Agregar(){
+    let jsonagrega={
+        userId : User.value,
+        id : Id.value,
+        title :Titt.value,
+        completed :Comple.value  
     }
-    jsonPedido.push(jsonagrega);
-    llenarTabla();
+    //afirma que estan vacias saltando el required del input
+    if(User=="" && Id=="" && Comple==""){
+        jsonPedido.push(jsonagrega);   
+        llenar();
+        Nuevo();       
+    }
+}   
+
+function Eliminar(){
+    if(User=="" && Id=="" && Comple==""){
+        User.value = $("#inUser").remove();
+        Id.value   = $("#inId").remove();
+        Titt.value = $("#inTi").remove();
+        Comple.value =$("#inCom").remove();
+    }
 }
 
-async function traerInformacionInternet() {
+function Nuevo(){ 
+   User.value = " ";
+   Id.value = " ";
+   Titt.value = " ";
+   Comple.value = " ";
+   User.focus(); 
+}
+
+async function capturarDeInternet(){
     await fetch('https://jsonplaceholder.typicode.com/todos')
     .then(res =>res.json()) 
     .then(pru => {
-        jsonPedido = pru;
-        llenarTabla();
-    });
+        jsonPedido=pru;
+        llenar();
+    }) 
 }
 
-function llenarTabla() {
-    var x = 0;
-    conten.innerHTML = "";
-    for(let info of jsonPedido) {
-        conten.innerHTML += `
-        <tr onclick="llenaFormulario(${x})">
+function llenar(){
+    let cont =0;
+    conten.innerHTML="";
+        for(let info of jsonPedido){
+        conten.innerHTML +=`
+        <tr onclick="capturarFormulario(${cont})">
             <td>${info.userId}</td>
             <td>${info.id}</td>
             <td>${info.title}</td>
-            <td>${info.completed}</td>
-        </tr>`;
-        x++;
-    }
+        <td>${info.completed}</td>
+        </tr>`
+        cont++;
+    }    
 }
 
-function llenaFormulario(item) {
-    User.value = jsonPedido[item].userId;
-    Id.value = jsonPedido[item].id;
-    Titt.value = jsonPedido[item].title;
-    selCom.value = jsonPedido[item].completed
+function capturarFormulario(dato){
+    User.value = jsonPedido[dato].userId;
+    Id.value   = jsonPedido[dato].id;
+    Titt.value = jsonPedido[dato].title;
+    Comple.value = jsonPedido[dato].completed;
 }
+  capturarDeInternet();  
 
-traerInformacionInternet();
+ 
+  
