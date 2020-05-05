@@ -59,3 +59,8 @@ input{
     margin-left: 20px;
     overflow:scroll;
 }
+
+.tabla tr td
+{
+    cursor: pointer;
+}

@@ -1,54 +1,51 @@
-let jsonPedido=[
-    {
-        userId : 2,
-        id : 201,
-        title :"dadsgsdgksdfñlalñd",
-        completed :true
-    }
-]
+let jsonPedido = [];
 
 let User = document.getElementById("inUser");
 let Id = document.getElementById("inId");
 let Titt = document.getElementById("inTi");
-let Comple =document.getElementById("inCom");
+let Comple =document.getElementById("selCom");
 let conten = document.getElementById("conten");
 
-function btnAgregar(){
-    jsonagrega={
-        userId : User.value,
-        id : Id.value,
-        title :Titt.value,
-        completed :Comple.value  
+function agregar() {
+    var jsonagrega = {
+        userId: User.value,
+        id: Id.value,
+        title: Titt.value,
+        completed: selCom.value  
     }
     jsonPedido.push(jsonagrega);
- llenar();
+    llenarTabla();
 }
 
-llenar();
-function llenar(){
-    fetch('https://jsonplaceholder.typicode.com/todos')
+async function traerInformacionInternet() {
+    await fetch('https://jsonplaceholder.typicode.com/todos')
     .then(res =>res.json()) 
     .then(pru => {
-        fila(pru);
-    }) 
+        jsonPedido = pru;
+        llenarTabla();
+    });
 }
 
-function fila(elem){
-    jsonPedido=elem;
-    conten.innerHTML="";
-    for(let info of elem){
-        console.log(info);
-        conten.innerHTML +=`<tr>
-                            <td>${info.userId}</td>
-                            <td>${info.id}</td>
-                            <td>${info.title}</td>
-                            <td>${info.completed}</td>
-                        </tr>`
-   
+function llenarTabla() {
+    var x = 0;
+    conten.innerHTML = "";
+    for(let info of jsonPedido) {
+        conten.innerHTML += `
+        <tr onclick="llenaFormulario(${x})">
+            <td>${info.userId}</td>
+            <td>${info.id}</td>
+            <td>${info.title}</td>
+            <td>${info.completed}</td>
+        </tr>`;
+        x++;
     }
 }
 
-    
+function llenaFormulario(item) {
+    User.value = jsonPedido[item].userId;
+    Id.value = jsonPedido[item].id;
+    Titt.value = jsonPedido[item].title;
+    selCom.value = jsonPedido[item].completed
+}
 
- 
-  
+traerInformacionInternet();
