@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Formulario.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Formulario</title>
+</head>
+<body>
+    <form action="" class="formulario" onsubmit="return false;">
+        <div class="inputformulario">
+            <div class="campos">
+                <label for="text">userId</label>
+                <input type="text" class="inUser" id="inUser" required>
+            </div>
+            <div class="campos">
+                <label for="text">id</label>
+                <input type="text" class="inId" id="inId" required>
+            </div>
+            <div class="campos">
+                <label for="text">Title</label>
+                <input type="text" class="inTi" id="inTi" required>
+            </div>
+            <div class="campos">
+                <label for="text">Completed</label>
+                <select id="selCom" class="selCom">
+                    <option value="true">True</option>
+                    <option value="false"> False</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <button class="btn" id="btnAgregar" >Agregar</button>
+            <button class="btn" id="btnNuevo" >Nuevo</button>
+            <button class="btn" id="btnEliminar" >Eliminar</button>
+        </div>
+        <div class="tabla">
+            <table class="table table-striped" id="tabPedido">
+                <thead>
+                    <th scope="col" width="200px">User Id</th>
+                    <th scope="col" width="200">Id</th>
+                    <th scope="col" width="200">Title</th>
+                    <th scope="col" width="200">completed</th>
+                </thead>
+                <tbody >
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <script src="js/Formulario.js"></script>
+</body>
+</html>
